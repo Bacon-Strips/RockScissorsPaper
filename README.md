@@ -1,2 +1,3 @@
-# Odin_project_repo_PG
-Reposite for the Odin Project practices
+#Rock Scissors Paper game
+
+Project made while following the Odin Projust foundational lessons
