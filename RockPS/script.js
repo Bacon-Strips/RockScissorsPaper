@@ -46,7 +46,7 @@ function result(player, comp) {
 function capFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
+/**
 function game() {
     let playerScore = 0;
     let compScore = 0;
@@ -72,10 +72,64 @@ function game() {
         return `Draw! ${playerScore} vs ${compScore}`;
     }
 }
+*/
 
-const playerSelection = 'paper';
-const computerSelection = computerPlay();
+//const playerSelection = 'paper';
+//const computerSelection = computerPlay();
+
+
 
 //console.log(play(playerSelection,computerSelection));
+let playerScore = 0;
+let comScore = 0;
+//console.log(game());
 
-console.log(game());
+const winScreen = document.querySelector('#winText');
+const playerDis = document.querySelector('#playerScore');
+const comDis = document.querySelector('#comScore');
+
+const selections = document.querySelectorAll('.btn');
+const display = document.querySelector('#display');
+
+selections.forEach((select) => {
+    select.addEventListener('click', () => {
+        const result = play(select.id, computerPlay());
+        const toPrint = document.createElement('div');
+        toPrint.textContent = result['result'];
+        toPrint.setAttribute('id','result');
+        display.appendChild(toPrint);
+        switch (result['score']) {
+            case -1:
+                playerScore++;
+                comScore++;
+                playerDis.textContent = playerScore;
+                comDis.textContent = comScore;
+                break;
+            case 0:
+                comScore++;
+                comDis.textContent = comScore;
+                break;
+            case 1:
+                playerScore++;
+                playerDis.textContent = playerScore;
+                break;
+        }
+        checkWinner();
+    })
+})
+
+function checkWinner() {
+    if (playerScore === 5 || comScore === 5) {
+        if (playerScore > comScore) {
+            winScreen.textContent = 'You Win!';
+        } else if (playerScore < comScore) {
+            winScreen.textContent = 'You lost...';
+        } else {
+            winScreen.textContent = 'Draw';
+        }
+        selections.forEach((button) => {
+            button.parentElement.removeChild(button);
+        })
+    }
+}
+

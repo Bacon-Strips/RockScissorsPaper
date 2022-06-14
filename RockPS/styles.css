@@ -1,0 +1,21 @@
+.Scoreboard {
+    width: 50px; 
+    float:left; 
+    height:50px; 
+    margin:10px; 
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#comScore {
+    margin-left: 50px;
+}
+
+#result {
+    float:none;
+}
+
+#Tally {
+    width: 1262px;
+    height: 70px;
+}
